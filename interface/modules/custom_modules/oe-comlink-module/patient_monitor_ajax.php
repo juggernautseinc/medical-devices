@@ -12,12 +12,12 @@
 
 use OpenEMR\Modules\Comlink\DisplayController;
 
-require_once "../../../globals.php";
-
+require_once __DIR__ . "/../../../globals.php";
+require_once __DIR__ . "/vendor/autoload.php";
 
 $display = new DisplayController();
 file_put_contents("/var/file_put/displaycontroller.txt", $display->sqlQuery());
-$query = "SELECT * FROM patient_monitoring_form";
+$query = "SELECT * FROM patient_monitoring_form"; $display->sqlQuery();
 
 $dataarray = array();
 $i = 0;
