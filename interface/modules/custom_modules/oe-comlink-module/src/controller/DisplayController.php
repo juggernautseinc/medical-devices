@@ -10,12 +10,10 @@
 
 namespace OpenEMR\Modules\Comlink;
 
-
-
 class DisplayController
 {
     public function sqlQuery(): string
     {
-        return "SELECT * FROM patient_monitoring_form ";
+        return "SELECT * FROM patient_monitoring_form";
     }
 }

@@ -16,8 +16,8 @@ require_once "../../../globals.php";
 
 
 $display = new DisplayController();
-
-$query = $display->sqlQuery();
+file_put_contents("/var/file_put/displaycontroller.txt", $display->sqlQuery());
+$query = "SELECT * FROM patient_monitoring_form";
 
 $dataarray = array();
 $i = 0;
