@@ -46,8 +46,9 @@ while ($row = sqlFetchArray($res)) {
 
             $bpUpper = explode("/", $row['bp_upper']);
             $bpLower = explode("/", $row['bp_lower']);
-var_dump($bpLower);
-var_dump($bpUpper);
+file_put_contents("/var/file_put/bp.txt", print_r($bpUpper, true), FILE_APPEND);
+            file_put_contents("/var/file_put/bp.txt", print_r($bpLower, true), FILE_APPEND);
+
             if (($form_vitalsrow['bps'] > $bpUpper[0]) || ($form_vitalsrow['bpd'] > $bpUpper[1])) {
                 if (($bpUpper[0] == 0) || ($bpUpper[0] == '')) {
                     $limit = '';
