@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *  package   Comlink OpenEMR
  *  link      http://www.open-emr.org
  *  author    Sherwin Gaddis <sherwingaddis@gmail.com>
@@ -9,9 +9,7 @@
  */
 
 require_once dirname(__FILE__, 4) . "/globals.php";
-require_once dirname(__FILE__) . "/controller/Container.php";
 
-use OpenEMR\Modules\Comlink\Container;
 use OpenEMR\Core\Header;
 
 ?>

@@ -10,9 +10,15 @@
  *
  */
 
+use OpenEMR\Modules\Comlink\DisplayController;
+
 require_once "../../../globals.php";
 
-$query = "SELECT * FROM patient_monitoring_form ";
+
+$display = new DisplayController();
+
+$query = $display->sqlQuery();
+
 $dataarray = array();
 $i = 0;
 $res = sqlStatement($query);
