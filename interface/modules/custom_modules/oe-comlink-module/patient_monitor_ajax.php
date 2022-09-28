@@ -19,10 +19,9 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 $displayData = new DisplayController();
 $query = $displayData->sqlQuery();
-
-$dataarray = array();
+$dataArray = array();
 $i = 0;
-$res = $displayData->processQuery($query); //sqlStatement($query);
+$res = $displayData->processQuery($query);
 
 while ($row = sqlFetchArray($res)) {
 
@@ -76,10 +75,10 @@ while ($row = sqlFetchArray($res)) {
         }  elseif  ( $row['alert'] == "Monitored") {
             $alert = '<div class="alert alert-danger" role="alert">' . $row['alert'] . '</div>';
         } else {
-            $alert='';
+            $alert ='';
         }
 
-        $dataarray['data'][$i] =  [
+        $dataArray['data'][$i] =  [
             '<a href=form/edit_patient.php?pid=' . $row['pid'] . '>' . $row2['fname'] . $row2['lname'] . $row2['mname'] . '</a>' . $icons,
             $row2['DOB'],
             $row['pid'],
@@ -101,4 +100,4 @@ while ($row = sqlFetchArray($res)) {
     }
 }
 
-echo json_encode($dataarray);
+echo json_encode($dataArray);
