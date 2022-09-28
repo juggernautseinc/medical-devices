@@ -72,8 +72,8 @@ while ($row = sqlFetchArray($res)) {
             round($form_vitalsrow['respiration'], 2),
             '',
             $form_vitalsrow['oxygen_saturation'],
-            $form_vitalsrow['weight'],
-            $form_vitalsrow['height'],
+            round($form_vitalsrow['weight'], 2),
+            round($form_vitalsrow['height'], 2),
             $row['pain_upper'],
             $alert,
 
