@@ -19,7 +19,7 @@ use OpenEMR\Modules\Comlink\DisplayController;
 
 $display = new DisplayController();
 file_put_contents("/var/file_put/displaycontroller.txt", $display->sqlQuery());
-$query = "SELECT * FROM patient_monitoring_form"; $display->sqlQuery();
+$query = "SELECT * FROM patient_monitoring_form"; //$display->sqlQuery();
 
 $dataarray = array();
 $i = 0;
