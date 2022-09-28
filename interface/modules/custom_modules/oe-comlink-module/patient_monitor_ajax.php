@@ -19,7 +19,6 @@ while ($row = sqlFetchArray($res)) {
     $facilityres = sqlStatement($facility, [$row['pid']]) ?? [];
     $facilityrow = sqlFetchArray($facilityres) ?? [];
 
-
     $query2 = "SELECT * FROM patient_data  WHERE patient_data.pid = " . $row['pid'];
     $res2 = sqlStatement($query2);
 
@@ -35,6 +34,7 @@ while ($row = sqlFetchArray($res)) {
                 $icons = '';
             }
         }
+
 
         //automatically set if range is set
         if (!empty($row['bp_upper']) && !empty($row['bp_lower'])) {
@@ -66,7 +66,7 @@ while ($row = sqlFetchArray($res)) {
             $row2['DOB'],
             $row['pid'],
             $facilityrow['name'] ?? 0,
-            $form_vitalsrow[0] . '/' . $form_vitalsrow['bpd'],
+            $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'],
             round($form_vitalsrow['temperature'], 2),
             $row['bs_upper'],
             round($form_vitalsrow['respiration'], 2),
