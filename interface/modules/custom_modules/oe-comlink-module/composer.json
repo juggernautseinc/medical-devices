@@ -13,7 +13,7 @@
     "keywords": ["openemr", "openemr-module"],
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {"OpenEMR\\Modules\\Comlink\\": "src/"}
+        "psr-4": {"Comlink\\": "src/"}
     },
     "require": {
         "openemr/oe-module-installer-plugin": "^0.1.0",

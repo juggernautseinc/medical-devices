@@ -11,7 +11,7 @@
  */
 
 
-use OpenEMR\Modules\Comlink\DisplayController;
+use Comlink\DisplayController;
 
 require_once __DIR__ . "/../../../globals.php";
 require_once __DIR__ . "/vendor/autoload.php";
