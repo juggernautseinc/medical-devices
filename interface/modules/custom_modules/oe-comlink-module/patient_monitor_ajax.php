@@ -42,11 +42,12 @@ while ($row = sqlFetchArray($res)) {
 
 
         //automatically set if range is set
-        //if (!empty($row['bp_upper']) && !empty($row['bp_lower'])) {
+        if (!empty($row['bp_upper']) && !empty($row['bp_lower'])) {
 
             $bpUpper = explode("/", $row['bp_upper']);
             $bpLower = explode("/", $row['bp_lower']);
-
+var_dump($bpLower);
+var_dump($bpUpper);
             if (($form_vitalsrow['bps'] > $bpUpper[0]) || ($form_vitalsrow['bpd'] > $bpUpper[1])) {
                 if (($bpUpper[0] == 0) || ($bpUpper[0] == '')) {
                     $limit = '';
@@ -56,7 +57,7 @@ while ($row = sqlFetchArray($res)) {
             } elseif (($form_vitalsrow['bps'] < $bpLower[0]) || ($form_vitalsrow['bpd'] < $bpLower[1])) {
                 $alert = '<div class="alert alert-info" role="alert"> Needs Attention </div>';
             }
-        //}
+        }
         //Manually set
         elseif  ($row['alert'] == "Need Attention") {
             $alert = '<div class="alert alert-info" role="alert">'.$row['alert'] . '</div>';
