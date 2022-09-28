@@ -23,10 +23,6 @@ while ($row = sqlFetchArray($res)) {
     $query2 = "SELECT * FROM patient_data  WHERE patient_data.pid = " . $row['pid'];
     $res2 = sqlStatement($query2);
 
-
-
-
-
     while ($row2 = sqlFetchArray($res2)) {
 
         $device_vitals = "SELECT count(*) FROM patient_devices_list WHERE pid=" . $row['pid'];
@@ -40,14 +36,11 @@ while ($row = sqlFetchArray($res)) {
             }
         }
 
-
         //automatically set if range is set
         if (!empty($row['bp_upper']) && !empty($row['bp_lower'])) {
 
             $bpUpper = explode("/", $row['bp_upper']);
             $bpLower = explode("/", $row['bp_lower']);
-file_put_contents("/var/file_put/bp.txt", print_r($bpUpper, true), FILE_APPEND);
-            file_put_contents("/var/file_put/bp.txt", print_r($bpLower, true), FILE_APPEND);
 
             if (($form_vitalsrow['bps'] > $bpUpper[0]) || ($form_vitalsrow['bpd'] > $bpUpper[1])) {
                 if (($bpUpper[0] == 0) || ($bpUpper[0] == '')) {
