@@ -10,10 +10,12 @@
  *
  */
 
-use OpenEMR\Modules\Comlink\DisplayController;
+
 
 require_once __DIR__ . "/../../../globals.php";
 require_once __DIR__ . "/vendor/autoload.php";
+
+use OpenEMR\Modules\Comlink\DisplayController;
 
 $display = new DisplayController();
 file_put_contents("/var/file_put/displaycontroller.txt", $display->sqlQuery());
