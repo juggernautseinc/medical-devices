@@ -11,7 +11,7 @@
  */
 
 
-use Comlink\DisplayController;
+use Comlink\Controller\DisplayController;
 
 require_once __DIR__ . "/../../../globals.php";
 require_once __DIR__ . "/vendor/autoload.php";

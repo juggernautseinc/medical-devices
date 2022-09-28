@@ -8,7 +8,7 @@
  *
  */
 
-namespace Comlink;
+namespace Comlink\Controller;
 
 class DisplayController
 {
