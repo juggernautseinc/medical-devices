@@ -1,0 +1,153 @@
+{
+    "numRecords":2,
+    "bulkData":[
+        {
+            "firstName":"Augie",
+            "lastName":"Doggie",
+            "subEhrEmrID":"09HGF37-XWQ12-PANJ332",
+            "actionCode":"addSubDevice",
+            "deviceData":{
+                "deviceID":"2fd49-0ke3vk-x3gt2",
+                "deviceModel":"Apple Watch",
+                "deviceMaker":"Apple",
+                "deviceOS":"Watch OS",
+                "ehrEmrCallBackURL":"http:\/\/localhost\/imara-pro\/comlink\/interface\/modules\/custom_modules\/oe-comlink-module\/form\/bulk_upload_save.php"
+            }
+        },
+        {
+            "firstName":"Mollie",
+            "lastName":"Madeup",
+            "subEhrEmrID":"09HGF37-XWQ12-PANJ332",
+            "actionCode":"Change",
+            "deviceData":{
+                "deviceID":"2fd49-0ke3vk-x3gt2",
+                "deviceModel":"Apple Watch",
+                "deviceMaker":"Apple",
+                "deviceOS":"Watch OS",
+                "ehrEmrCallBackURL":"http:\/\/localhost\/imara-pro\/comlink\/interface\/modules\/custom_modules\/oe-comlink-module\/form\/bulk_upload_save.php"
+            }
+        }
+    ]
+},
+
+{
+
+    "numRecords" : 4,
+
+    "bulkData" : [
+
+        {
+
+            "firstName": "New",
+
+            "lastName" : "Name",
+
+            "subEhrEmrID" : "09HGF37-XWQ12-PANJ332",
+
+            "actionCode": "CHANGE",
+
+           
+
+            "deviceData" : {
+
+                "deviceID" : "2fd49-0ke3vk-x3gt2",
+
+                "deviceModel" : "Apple Watch",
+
+                "deviceMaker" : "Apple",
+
+                "deviceOS" : "Watch OS",
+
+                "ehrEmrCallBackURL" : "https://newnamecallback.com"
+
+            }  
+
+        },
+
+        {
+
+            "firstName": "Arshad",
+
+            "lastName" : "DaBoss",
+
+            "subEhrEmrID" : "HJG90-DV32K-LN4839",
+
+            "actionCode": "CHANGE",
+
+           
+
+            "deviceData" : {
+
+                "deviceID" : "2fd49-0ke3vk-awpADD",
+
+                "deviceModel" : "Apple Watch",
+
+                "deviceMaker" : "Apple",
+
+                "deviceOS" : "Watch OS",
+
+                "ehrEmrCallBackURL" : "https://callbacktheboss.com"
+
+            }  
+
+        },
+
+        {
+
+            "firstName": "Device",
+
+            "lastName" : "ToAdd",
+
+            "subEhrEmrID" : "TR430-SC72W-LN4111",
+
+            "actionCode": "ADD",
+
+           
+
+            "deviceData" : {
+
+                "deviceID" : "2fd49-0ke3vk-LN4111",
+
+                "deviceModel" : "Apple Watch",
+
+                "deviceMaker" : "Apple",
+
+                "deviceOS" : "Watch OS",
+
+                "ehrEmrCallBackURL" : "https://callmeback.com"
+
+            }  
+
+        },
+
+        {
+
+            "firstName": "",
+
+            "lastName" : "",
+
+            "subEhrEmrID" : "testEhREmrID01234",
+
+            "actionCode": "DELETE",
+
+           
+
+            "deviceData" : {
+
+                "deviceID" : "testSubDeviceId01234",
+
+                "deviceModel" : "Apple Watch",
+
+                "deviceMaker" : "Apple",
+
+                "deviceOS" : "Watch OS",
+
+                "ehrEmrCallBackURL" : "https://callmeback.com"
+
+            }  
+
+        }
+
+    ]
+
+}

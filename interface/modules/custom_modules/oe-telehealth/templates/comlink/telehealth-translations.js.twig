@@ -1,0 +1,5 @@
+// Render the comlink translation constants we will use in the system
+(function(comlink) {
+    comlink.translations = {{ translations|json_encode }};
+    window.comlink = comlink;
+})(window.comlink || {});

@@ -1,0 +1,4 @@
+subEhrEmrID,deviceID,deviceModel,deviceMaker,deviceOS,actionCode
+00009HGF37-XWQ12-PANJ332,2fd49-0ke3vk-x3gt2,Apple Watch,Apple,Watch OS,addSubDevice
+09HGF37-XWQ12-PANJ332aa,2fd49-0ke3vk-x3gt2ss,Apple Watch,Apple,Watch OS,changeSubDevice
+09HGF37-XWQ12-PANJ332aann,2fd49-0ke3vk-x3gt2ssmnm,Apple Watch,Apple,Watch OS,changeSubDevice
