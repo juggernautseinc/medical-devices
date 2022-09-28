@@ -22,7 +22,7 @@ $query = $displayData->sqlQuery();
 
 $dataarray = array();
 $i = 0;
-$res = sqlStatement($query);
+$res = $displayData->processQuery($query); //sqlStatement($query);
 
 while ($row = sqlFetchArray($res)) {
 

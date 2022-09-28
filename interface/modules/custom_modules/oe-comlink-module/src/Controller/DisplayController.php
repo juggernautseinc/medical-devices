@@ -16,4 +16,9 @@ class DisplayController
     {
         return "SELECT * FROM patient_monitoring_form";
     }
+
+    public function processQuery($query)
+    {
+        return sqlStatement($query);
+    }
 }
