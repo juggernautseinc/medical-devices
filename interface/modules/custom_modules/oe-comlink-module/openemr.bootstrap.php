@@ -54,10 +54,13 @@ $eventDispatcher->addListener(MenuEvent::MENU_UPDATE, 'comlink_add_menu_item');
  */
 function createFaxModuleGlobals(GlobalsInitializedEvent $event)
 {
-    $instructuname = xl('Enter username from comlink account.');
-    $instructupass = xl('Enter password from comlink account.');
-    $instructorgid = xl('Enter organizaion identification.');
+    $instructuname = xlt('Enter username from comlink account.');
+    $instructupass = xlt('Enter password from comlink account.');
+    $instructorgid = xlt('Enter organizaion identification.');
+    $posturi_instruction = xlt('Enter Comlink URI');
     $event->getGlobalsService()->createSection("Comlink Device Module", "Billing");
+    $setting = new GlobalSetting(xl('Comlink Device URI'), 'text', '', $posturi_instruction);
+    $event->getGlobalsService()->appendToSection("Comlink Device Module", "comlink_device_uri", $setting);
     $setting = new GlobalSetting(xl('Comlink Username'), 'text', '', $instructuname);
     $event->getGlobalsService()->appendToSection("Comlink Device Module", "comlink_username", $setting);
     $setting = new GlobalSetting(xl('Comlink Password'), 'encrypted', '', $instructupass);
