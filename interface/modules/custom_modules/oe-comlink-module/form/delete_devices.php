@@ -27,7 +27,7 @@ while ($row = sqlFetchArray($res)) {
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") .
     "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-$Api_url = 'https://proddevbrdg.comlinktelehealth.io:57483/ctsiDevBridge/deleteSubDevice';
+$Api_url = $GLOBALS['comlink_device_uri'] . '/deleteSubDevice';
 $payload =
     [
         "firstName" => $fname,

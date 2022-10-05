@@ -35,7 +35,7 @@ $watch_os=$_POST['watch_os'];
     $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") .
         "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-    $Api_url = 'https://proddevbrdg.comlinktelehealth.io:57483/ctsiDevBridge/changeSubDevice';
+    $Api_url = $GLOBALS['comlink_device_uri'] . '/changeSubDevice';
     $payload =
         [
             "firstName" => $fname,
