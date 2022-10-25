@@ -118,15 +118,13 @@ if ($_POST) {
                     </select>
                 </div>
             </div>
-
-           
+            <div class="form-row">
+                <h4><?php echo xlt('Or enter a new device'); ?></h4>
+            </div>
+            <div class="form-row">
+                <input class='form-control' type='hidden' name='sub_ehr' id='sub_ehr' autocomplete="off"  value="<?php echo $_SESSION['pid']?>" required />
+            </div>
             <div class="form-row mx-2">
-                <div class="form-group">
-                    <h4><?php echo xlt('Or enter a new device'); ?></h4>
-                </div>
-                <div class="col-sm form-group">
-                    <input class='form-control' type='hidden' name='sub_ehr' id='sub_ehr' autocomplete="off"  value="<?php echo $_SESSION['pid']?>" required />
-                </div>
                 <div class="col-sm form-group">
                     <div class="col-sm form-group">
                         <label for='form_facility'><?php echo xlt('Device Id'); ?>:</label>
