@@ -106,7 +106,7 @@ if ($_POST) {
             <input type="hidden" name="pid" id="pid" value="<?php echo $_GET['pid']; ?>" />
             <div class="form-row mx-2">
                 <div class="col-sm form-group">
-                    <label for='form_facility'><?php echo xlt("Select from stored devices"); ?>:</label>
+                    <label for='form_facility'><strong><?php echo xlt("Select from stored devices"); ?>:</strong></label>
                     <select class="form-control opSelect" aria-label="Default select example">
                         <option value="0" selected>Select One</option>
                         <?php foreach ($patient_devices_list as $patient_devices) {
