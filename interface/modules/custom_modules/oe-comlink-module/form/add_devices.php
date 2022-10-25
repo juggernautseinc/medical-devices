@@ -121,7 +121,9 @@ if ($_POST) {
 
            
             <div class="form-row mx-2">
-                <h3><?php echo xlt('Or enter a new device'); ?></h3>
+                <div class="form-group">
+                    <h4><?php echo xlt('Or enter a new device'); ?></h4>
+                </div>
                 <div class="col-sm form-group">
                     <input class='form-control' type='hidden' name='sub_ehr' id='sub_ehr' autocomplete="off"  value="<?php echo $_SESSION['pid']?>" required />
                 </div>

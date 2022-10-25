@@ -64,12 +64,8 @@ $providers = $loadDb->getProviders();
             <div class="form-row mx-2 mt-4 pt-4">
                 <div class="col-sm form-group">
                     <input class="col-sm mx-sm-2 my-2 my-sm-auto btn btn-primary" type="button" name="add_device"
-                        id="add_device" value="Add Devices" onclick="add_device()">
+                        id="add_device" value="Add/Assign Devices" onclick="add_device()">
                 </div>
-                <!-- <div class="col-sm form-group">
-                    <input class="col-sm mx-sm-2 my-2 my-sm-auto btn btn-primary" type="button" name="bulk_upload"
-                        id="bulk_upload" value="Bulk Upload" onclick="bulk_upload()">
-                </div> -->
             </div>
         </div>
         <form role="form" method='post'>
