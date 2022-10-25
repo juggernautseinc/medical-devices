@@ -118,11 +118,11 @@ if ($_POST) {
                     </select>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row p-2">
                 <h4><?php echo xlt('Or enter a new device'); ?></h4>
             </div>
             <div class="form-row">
-                <input class='form-control' type='hidden' name='sub_ehr' id='sub_ehr' autocomplete="off"  value="<?php echo $_SESSION['pid']?>" required />
+                <input class='form-control' type='hidden' name='sub_ehr' id='sub_ehr' autocomplete="off"  value="<?php echo $_SESSION['pid']?>" />
             </div>
             <div class="form-row mx-2">
                 <div class="col-sm form-group">
