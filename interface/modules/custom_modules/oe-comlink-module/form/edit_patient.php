@@ -261,7 +261,7 @@ $providers = $loadDb->getProviders();
 function add_device() {
     var pid = $('#pid').val();
     var url = 'add_devices.php?pid=' + pid;
-    dlgopen(url, '_blank', 670, 550, '', 'Add/Assign Device', {
+    dlgopen(url, '_blank', 690, 550, '', 'Add/Assign Device', {
         onClosed: 'reload'
     });
 
