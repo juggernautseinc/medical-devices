@@ -8,11 +8,14 @@
  *
  */
 
+use OpenEMR\Common\Crypto\CryptoGen;
+
 function curl_get_content($url, $type = "GET", $payload = '', $redirectURL = false)
 {
-    $x_username = 'sagaddis';
-    $x_password = '3d38S1^cRk@e';
-    $x_orgid = 'SGADDIS01';
+    $cryptoGen = new CryptoGen();
+    $x_username = $GLOBALS['comlink_username'];
+    $x_password = $cryptoGen->decryptStandard($GLOBALS['comlink_password']);
+    $x_orgid = $GLOBALS['comlink_xorgid'];
 
     set_time_limit(60);
     $ch = curl_init();

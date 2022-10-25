@@ -106,7 +106,7 @@ if ($_POST) {
             <input type="hidden" name="pid" id="pid" value="<?php echo $_GET['pid']; ?>" />
             <div class="form-row mx-2">
                 <div class="col-sm form-group">
-                    <label for='form_facility'><?php echo xlt('' . "Select" . ' SubEhrEmrId'); ?>:</label>
+                    <label for='form_facility'><?php echo xlt("Select from stored devices"); ?>:</label>
                     <select class="form-control opSelect" aria-label="Default select example">
                         <option value="0" selected>Select One</option>
                         <?php foreach ($patient_devices_list as $patient_devices) {
@@ -121,10 +121,9 @@ if ($_POST) {
 
            
             <div class="form-row mx-2">
+                <h3><?php echo xlt('Or enter a new device'); ?></h3>
                 <div class="col-sm form-group">
-                    <label for='form_facility'><?php echo xlt('SubEhrEmrId'); ?>:</label>
-
-                    <input class='form-control' type='text' name='sub_ehr' id='sub_ehr' autocomplete="off" placeholder='<?php echo xla(''); ?>'  value="" required />
+                    <input class='form-control' type='hidden' name='sub_ehr' id='sub_ehr' autocomplete="off"  value="<?php echo $_SESSION['pid']?>" required />
                 </div>
                 <div class="col-sm form-group">
                     <div class="col-sm form-group">
@@ -168,7 +167,7 @@ if ($_POST) {
 
 
             <div class="form-row mx-2 mt-3">
-                <input class="col-sm mx-sm-2 my-2 my-sm-auto btn btn-primary" type="submit" name="form_save" id="form_save" value="Add Device">
+                <input class="col-sm mx-sm-2 my-2 my-sm-auto btn btn-primary" type="submit" name="form_save" id="form_save" value="Add/Assign Device">
                 <input class="col-sm mx-sm-2 my-2 my-sm-auto btn btn-secondary" type="button" id="cancel" onclick="dlgclose()" value="Cancel">
             </div>
         </form>
@@ -351,3 +350,4 @@ if ($_POST) {
 
     </html>
 <?php } ?>
+
