@@ -10394,15 +10394,6 @@ RestConfig::$FHIR_ROUTE_MAP = array(
         return $return;
     },
 
-    "POST /fhir/PatientBulkUpload" => function () {
-        RestConfig::scope_check("user", "Patient", "write");
-        RestConfig::authorization_check("patients", "demo");
-        $data = (array) (json_decode(file_get_contents("php://input"), true));
-        $return = (new FhirPatientBulkUploadRestController())->post($data);
-        RestConfig::apiLog($return, $data);
-        return $return;
-    },
-
     /**
      *  @OA\Put(
      *      path="/fhir/Organization/{uuid}",
@@ -10703,6 +10694,13 @@ RestConfig::$FHIR_ROUTE_MAP = array(
         return $return;
     },
 
+    "POST /fhir/PatientBulkUpload" => function (HttpRestRequest $request) {
+        RestConfig::authorization_check("patients", "demo");
+        $data = (array) (json_decode(file_get_contents("php://input"), true));
+        $return = (new FhirPatientBulkUploadRestController())->post($data);
+        RestConfig::apiLog($return, $data);
+        return $return;
+    },
     /**
      *  @OA\Put(
      *      path="/fhir/Patient/{uuid}",
