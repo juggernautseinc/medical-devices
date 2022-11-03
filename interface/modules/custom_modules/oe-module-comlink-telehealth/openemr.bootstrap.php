@@ -21,7 +21,7 @@ use OpenEMR\Core\ModulesClassLoader;
 /**
  * @global OpenEMR\Core\ModulesClassLoader $classLoader
  */
-$classLoader->registerNamespaceIfNotExists('Comlink\\OpenEMR\\Modules\\TeleHealthModule\\', __DIR__ . DIRECTORY_SEPARATOR . 'src');
+//$classLoader->registerNamespaceIfNotExists('Comlink\\OpenEMR\\Modules\\TeleHealthModule\\', __DIR__ . DIRECTORY_SEPARATOR . 'src');
 
 /**
  * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
