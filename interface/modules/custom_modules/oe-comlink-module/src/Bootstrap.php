@@ -36,13 +36,13 @@ use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
 
 // we import our own classes here.. although this use statement is unnecessary it forces the autoloader to be tested.
-use OpenEMR\Modules\CustomModuleSkeleton\CustomSkeletonRestController;
+use OpenEMR\Modules\Comlink\ComlinkRestController;
 
 
 class Bootstrap
 {
     const MODULE_INSTALLATION_PATH = "/interface/modules/custom_modules/";
-    const MODULE_NAME = "oe-module-custom-skeleton";
+    const MODULE_NAME = "oe-comlink-module";
     /**
      * @var EventDispatcherInterface The object responsible for sending and subscribing to events through the OpenEMR system
      */
@@ -120,7 +120,7 @@ class Bootstrap
         global $GLOBALS;
 
         $service = $event->getGlobalsService();
-        $section = xlt("Skeleton Module");
+        $section = xlt("Comlink Module");
         $service->createSection($section, 'Portal');
 
         $settings = $this->globalsConfig->getGlobalSettingSectionConfiguration();
@@ -208,10 +208,10 @@ class Bootstrap
         $menuItem->requirement = 0;
         $menuItem->target = 'mod';
         $menuItem->menu_id = 'mod0';
-        $menuItem->label = xlt("Custom Module Skeleton");
+        $menuItem->label = xlt("Custom Module Comlink");
         // TODO: pull the install location into a constant into the codebase so if OpenEMR changes this location it
         // doesn't break any modules.
-        $menuItem->url = "/interface/modules/custom_modules/oe-module-custom-skeleton/public/sample-index.php";
+        $menuItem->url = "/interface/modules/custom_modules/oe-comlink-module/public/sample-index.php";
         $menuItem->children = [];
 
         /**
@@ -235,7 +235,7 @@ class Bootstrap
          * This menu flag takes a boolean property defined in the $GLOBALS array that OpenEMR populates.
          * It allows a menu item to display if the property is true, and be hidden if the property is false
          */
-        //$menuItem->global_req = ["custom_skeleton_module_enable"];
+        //$menuItem->global_req = ["custom_comlink_module_enable"];
 
         /**
          * If you want your menu item to allows be shown then leave this property blank.
@@ -257,21 +257,21 @@ class Bootstrap
     public function subscribeToApiEvents()
     {
         if ($this->getGlobalConfig()->getGlobalSetting(GlobalConfig::CONFIG_ENABLE_FHIR_API)) {
-            $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomSkeletonApi']);
+            $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomComlinkApi']);
             $this->eventDispatcher->addListener(RestApiScopeEvent::EVENT_TYPE_GET_SUPPORTED_SCOPES, [$this, 'addApiScope']);
             $this->eventDispatcher->addListener(RestApiResourceServiceEvent::EVENT_HANDLE, [$this, 'addMetadataConformance']);
         }
     }
 
-    public function addCustomSkeletonApi(RestApiCreateEvent $event)
+    public function addCustomComlinkApi(RestApiCreateEvent $event)
     {
-        $apiController = new CustomSkeletonRestController();
+        $apiController = new CustomComlinkRestController();
 
         /**
          * To see the route definitions @see https://github.com/openemr/openemr/blob/master/_rest_routes.inc.php
          */
-        $event->addToFHIRRouteMap('GET /fhir/CustomSkeletonResource', [$apiController, 'listResources']);
-        $event->addToFHIRRouteMap('GET /fhir/CustomSkeletonResource/:fhirId', [$apiController, 'getOneResource']);
+        $event->addToFHIRRouteMap('GET /fhir/CustomComlinkResource', [$apiController, 'listResources']);
+        $event->addToFHIRRouteMap('GET /fhir/CustomComlinkResource/:fhirId', [$apiController, 'getOneResource']);
 
         /**
          * Events must ALWAYS be returned
@@ -289,12 +289,12 @@ class Bootstrap
     {
         if ($event->getApiType() == RestApiScopeEvent::API_TYPE_FHIR) {
             $scopes = $event->getScopes();
-            $scopes[] = 'user/CustomSkeletonResource.read';
-            $scopes[] = 'patient/CustomSkeletonResource.read';
+            $scopes[] = 'user/CustomComlinkResource.read';
+            $scopes[] = 'patient/CustomComlinkResource.read';
             // only add system scopes if they are actually enabled
             if (\RestConfig::areSystemScopesEnabled())
             {
-                $scopes[] = 'system/CustomSkeletonResource.read';
+                $scopes[] = 'system/CustomComlinkResource.read';
             }
             $event->setScopes($scopes);
         }
@@ -303,7 +303,7 @@ class Bootstrap
 
     public function addMetadataConformance(RestApiResourceServiceEvent $event)
     {
-        $event->setServiceClass(CustomSkeletonFHIRResourceService::class);
+        $event->setServiceClass(CustomComlinkFHIRResourceService::class);
         return $event;
     }
 

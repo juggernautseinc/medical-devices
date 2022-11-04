@@ -9,7 +9,7 @@
  */
 
 namespace OpenEMR\Modules\Comlink;
-
+/*
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Menu\MenuEvent;
 use OpenEMR\Modules\CustomModuleSkeleton\Bootstrap;
@@ -50,11 +50,12 @@ function comlink_add_menu_item(MenuEvent $event)
  * @global                       $eventDispatcher @see ModulesApplication::loadCustomModule
  * @global                       $module          @see ModulesApplication::loadCustomModule
  */
-$eventDispatcher->addListener(MenuEvent::MENU_UPDATE, 'comlink_add_menu_item');
+//$eventDispatcher->addListener(MenuEvent::MENU_UPDATE, 'comlink_add_menu_item');
 
 /**
  * @throws Exception
  */
+/*
 function createFaxModuleGlobals(GlobalsInitializedEvent $event)
 {
     $instructuname = xlt('Enter username from comlink account.');
@@ -73,7 +74,7 @@ function createFaxModuleGlobals(GlobalsInitializedEvent $event)
 }
 
 $eventDispatcher->addListener(GlobalsInitializedEvent::EVENT_HANDLE, 'createFaxModuleGlobals');
-
+*/
 /**
  * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
  */
