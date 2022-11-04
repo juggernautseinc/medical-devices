@@ -3,7 +3,7 @@
         'name' => 'juggernautsei/oe-comlink-module',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '93cc2f0d66e733db164e38f704d55d70df417a06',
+        'reference' => '6a03adde5b309d8bd95543ec8b06d3550ee653ac',
         'type' => 'openemr-module',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'juggernautsei/oe-comlink-module' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '93cc2f0d66e733db164e38f704d55d70df417a06',
+            'reference' => '6a03adde5b309d8bd95543ec8b06d3550ee653ac',
             'type' => 'openemr-module',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
