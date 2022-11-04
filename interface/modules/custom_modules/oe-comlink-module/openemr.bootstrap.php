@@ -10,6 +10,8 @@
 
 namespace OpenEMR\Modules\Comlink;
 
+require_once __DIR__ . '/../../../globals.php';
+
 /**
  * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
  */
