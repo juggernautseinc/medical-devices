@@ -9,6 +9,14 @@
  */
 
 namespace OpenEMR\Modules\Comlink;
+
+/**
+ * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
+ */
+
+$bootstrap = new Bootstrap($eventDispatcher, $GLOBALS['kernel']);
+$bootstrap->subscribeToEvents();
+
 /*
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Menu\MenuEvent;
@@ -75,9 +83,4 @@ function createFaxModuleGlobals(GlobalsInitializedEvent $event)
 
 $eventDispatcher->addListener(GlobalsInitializedEvent::EVENT_HANDLE, 'createFaxModuleGlobals');
 */
-/**
- * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
- */
 
-$bootstrap = new Bootstrap($eventDispatcher, $GLOBALS['kernel']);
-$bootstrap->subscribeToEvents();
