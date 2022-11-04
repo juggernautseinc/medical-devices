@@ -8,8 +8,11 @@
  *
  */
 
+namespace OpenEMR\Modules\Comlink;
+
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Menu\MenuEvent;
+use OpenEMR\Modules\CustomModuleSkeleton\Bootstrap;
 use OpenEMR\Services\Globals\GlobalSetting;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -71,3 +74,9 @@ function createFaxModuleGlobals(GlobalsInitializedEvent $event)
 
 $eventDispatcher->addListener(GlobalsInitializedEvent::EVENT_HANDLE, 'createFaxModuleGlobals');
 
+/**
+ * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
+ */
+
+$bootstrap = new Bootstrap($eventDispatcher, $GLOBALS['kernel']);
+$bootstrap->subscribeToEvents();
