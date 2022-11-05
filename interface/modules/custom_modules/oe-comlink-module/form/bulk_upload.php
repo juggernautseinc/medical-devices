@@ -1,9 +1,9 @@
 <?php
 
-require_once "../../../../globals.php";
-require_once dirname(__FILE__, 2)."/controller/Container.php";
+require_once dirname(__FILE__, 5) . "/globals.php";
+require_once dirname(__FILE__, 2)."/vendor/autoload.php";
 
-use OpenEMR\Modules\Comlink\Container;
+use Comlink\OpenEMR\Module\Container;
 use OpenEMR\Core\Header;
 use OpenEMR\Common\Csrf\CsrfUtils;
 
