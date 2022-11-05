@@ -8,10 +8,8 @@
  *
  */
 
-require_once "../../../../globals.php";
-require_once "../controller/Container.php";
+require_once dirname(__FILE__, 5) . "/globals.php";
 
-use OpenEMR\Modules\Comlink\Container;
 use OpenEMR\Core\Header;
 
 ?>
