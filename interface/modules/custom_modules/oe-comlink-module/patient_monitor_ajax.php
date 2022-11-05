@@ -83,7 +83,7 @@ while ($row = sqlFetchArray($res)) {
             $row2['DOB'] ?? null,
             $row['pid'] ?? null,
             $facilityrow['name'] ?? 1,
-            $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'] ?? null,
+            $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'],
             $temperature ?? null,
             $row['bs_upper'] ?? null,
             $respiration ?? null,
@@ -93,8 +93,6 @@ while ($row = sqlFetchArray($res)) {
             $height ?? null,
             $row['pain_upper'] ?? null,
             $alert,
-
-
         ];
         $i++;
     }
