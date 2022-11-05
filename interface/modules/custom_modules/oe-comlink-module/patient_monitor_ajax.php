@@ -39,7 +39,7 @@ while ($row = sqlFetchArray($res)) {
     $res2 = sqlStatement($query2);
 
     while ($row2 = sqlFetchArray($res2)) {
-
+        $alert = '';
         $device_vitals = "SELECT count(*) FROM patient_devices_list WHERE pid=" . $row['pid'];
         $device_vitalsres = sqlStatement($device_vitals);
         $device_vitalsrow = sqlFetchArray($device_vitalsres);
@@ -73,24 +73,22 @@ while ($row = sqlFetchArray($res)) {
             $alert = '<div class="alert alert-info" role="alert">'.$row['alert'] . '</div>';
         }  elseif  ( $row['alert'] == "Monitored") {
             $alert = '<div class="alert alert-danger" role="alert">' . $row['alert'] . '</div>';
-        } else {
-            $alert ='';
         }
 
         $dataArray['data'][$i] =  [
             '<a href=form/edit_patient.php?pid=' . $row['pid'] . '>' . $row2['fname'] . $row2['lname'] . $row2['mname'] . '</a>' . $icons,
-            $row2['DOB'],
-            $row['pid'],
+            $row2['DOB'] ?? null,
+            $row['pid'] ?? null,
             $facilityrow['name'] ?? 0,
-            $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'],
-            round($form_vitalsrow['temperature'], 2),
-            $row['bs_upper'],
-            round($form_vitalsrow['respiration'], 2),
+            $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'] ?? null,
+            round($form_vitalsrow['temperature'], 2) ?? null,
+            $row['bs_upper'] ?? null,
+            round($form_vitalsrow['respiration'], 2) ?? null,
             '',
-            $form_vitalsrow['oxygen_saturation'],
-            round($form_vitalsrow['weight'], 2),
-            round($form_vitalsrow['height'], 2),
-            $row['pain_upper'],
+            $form_vitalsrow['oxygen_saturation'] ?? null,
+            round($form_vitalsrow['weight'], 2) ?? null,
+            round($form_vitalsrow['height'], 2) ?? null,
+            $row['pain_upper'] ?? null,
             $alert,
 
 
