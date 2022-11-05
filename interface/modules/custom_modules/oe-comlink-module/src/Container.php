@@ -1,16 +1,17 @@
 <?php
 
 /*
- *  package   Comlink OpenEMR
- *  link      http://www.open-emr.org
- *  author    Sherwin Gaddis <sherwingaddis@gmail.com>
- *  copyright Copyright (c )2022. Sherwin Gaddis <sherwingaddis@gmail.com>
+ *
+ *  @package       OpenEMR
+ *  @link    https://www.open-emr.org https://affordablecustomehr.com
+ *  @author    Sherwin Gaddis <sherwingaddis@gmail.com>
+ *  @copyright Copyright (c) 2022 Sherwin Gaddis <sherwingaddis@gmail.com>
+ *  @license   https://github.com/openemr/openemr/blob/master/LICENSE GNU General Public License 3
  *
  */
 
 namespace Comlink\OpenEMR\Module;
 
-require_once "Database.php";
 
 /**
  * Class Container
@@ -23,11 +24,6 @@ class Container
      * @var
      */
     private $database;
-
-    public function __construct()
-    {
-        //do epic stuff
-    }
 
     /**
      * @return mixed

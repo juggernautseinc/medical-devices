@@ -9,11 +9,11 @@
  */
 
 require_once "../../../../globals.php";
-require_once dirname(__FILE__, 2) . "/controller/Container.php";
 
+
+use Comlink\OpenEMR\Module\Container;
 use Laminas\Console\Console;
 use OpenEMR\Common\Uuid\UuidRegistry;
-use OpenEMR\Modules\Comlink\Container;
 use OpenEMR\Core\Header;
 use OpenEMR\Common\Csrf\CsrfUtils;
 
