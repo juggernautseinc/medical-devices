@@ -14,7 +14,7 @@
  * @license   https://github.com/openemr/openemr/blob/master/LICENSE GNU General Public License 3
  */
 
-namespace OpenEMR\Modules\Comlink;
+namespace Comlink\OpenEMR\Module;
 
 /**
  * Note the below use statements are importing classes from the OpenEMR core codebase
@@ -36,7 +36,7 @@ use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
 
 // we import our own classes here.. although this use statement is unnecessary it forces the autoloader to be tested.
-use OpenEMR\Modules\Comlink\ComlinkRestController;
+use Comlink\OpenEMR\Module\ComlinkRestController;
 
 
 class Bootstrap

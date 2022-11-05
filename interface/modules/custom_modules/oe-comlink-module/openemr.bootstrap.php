@@ -8,7 +8,7 @@
  *
  */
 
-namespace OpenEMR\Modules\Comlink;
+namespace Comlink\OpenEMR\Module;
 
 /**
  * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
