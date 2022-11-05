@@ -88,7 +88,8 @@ class Bootstrap
         $this->eventDispatcher = $eventDispatcher;
 
         // we inject our globals value.
-        $this->globalsConfig = new GlobalConfig($GLOBALS);
+        $globals = $GLOBALS;
+        $this->globalsConfig = new GlobalConfig($globals);
         $this->logger = new SystemLogger();
     }
 
