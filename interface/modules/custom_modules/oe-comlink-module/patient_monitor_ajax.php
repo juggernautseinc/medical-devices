@@ -74,7 +74,9 @@ while ($row = sqlFetchArray($res)) {
         }  elseif  ( $row['alert'] == "Monitored") {
             $alert = '<div class="alert alert-danger" role="alert">' . $row['alert'] . '</div>';
         }
-        $temperature = round($form_vitalsrow['temperature'], 2);
+        if ($form_vitalsrow['temperature']) {
+            $temperature = round($form_vitalsrow['temperature'], 2);
+        }
         $respiration = round($form_vitalsrow['respiration'], 2);
         $weight = round($form_vitalsrow['weight'], 2);
         $height = round($form_vitalsrow['height'], 2);
