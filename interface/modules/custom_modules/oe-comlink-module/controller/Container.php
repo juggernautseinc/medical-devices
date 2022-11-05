@@ -8,7 +8,7 @@
  *
  */
 
-namespace OpenEMR\Modules\Comlink;
+namespace Comlink\OpenEMR\Module;
 
 require_once "Database.php";
 

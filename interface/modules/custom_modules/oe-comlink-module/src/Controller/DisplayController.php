@@ -8,7 +8,7 @@
  *
  */
 
-namespace Comlink\Controller;
+namespace Comlink\OpenEMR\Module;
 
 class DisplayController
 {

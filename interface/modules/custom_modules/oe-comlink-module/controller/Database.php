@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenEMR\Modules\Comlink;
+namespace Comlink\OpenEMR\Module;
 
 class Database
 {
