@@ -1,7 +1,7 @@
 <?php
 
 require_once "../../../../globals.php";
-require_once dirname(__FILE__, 2) . "vendor/autoload.php";
+require_once dirname(__FILE__, 2) . "/vendor/autoload.php";
 
 use Comlink\OpenEMR\Module\Container;
 use OpenEMR\Core\Header;
