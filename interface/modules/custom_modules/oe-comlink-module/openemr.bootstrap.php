@@ -8,6 +8,7 @@
  *
  */
 
+require_once __DIR__ . "/vendor/autoload.php";
 
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Menu\MenuEvent;
