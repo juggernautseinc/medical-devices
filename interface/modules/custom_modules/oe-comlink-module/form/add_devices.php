@@ -9,7 +9,7 @@
  */
 
 require_once "../../../../globals.php";
-
+require_once __DIR__ . "/../vendor/autoload.php";
 
 use Comlink\OpenEMR\Module\Container;
 use Laminas\Console\Console;
