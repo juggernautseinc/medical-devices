@@ -26,7 +26,7 @@ if (!AclMain::aclCheckCore('admin', 'manage_modules')) {
 $installdatatable = new Container();
 $loadTable = $installdatatable->getDatabase();
 //table creation
-$status = $loadTable->doesTableExist();
+//$status = $loadTable->doesTableExist();
 
 $import_table = $installdatatable->getDatabase(); //example code
 
