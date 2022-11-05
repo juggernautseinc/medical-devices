@@ -14,8 +14,8 @@ namespace Comlink\OpenEMR\Module;
  * @global EventDispatcher $eventDispatcher Injected by the OpenEMR module loader;
  */
 
-$bootstrap = new Bootstrap($eventDispatcher, $GLOBALS['kernel']);
-$bootstrap->subscribeToEvents();
+//$bootstrap = new Bootstrap($eventDispatcher, $GLOBALS['kernel']);
+//$bootstrap->subscribeToEvents();
 
 
 
