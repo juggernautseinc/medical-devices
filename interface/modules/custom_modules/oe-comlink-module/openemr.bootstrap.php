@@ -10,6 +10,7 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+use Comlink\OpenEMR\Module\Bootstrap;
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Menu\MenuEvent;
 use OpenEMR\Services\Globals\GlobalSetting;
@@ -70,3 +71,5 @@ function createFaxModuleGlobals(GlobalsInitializedEvent $event)
 
 $eventDispatcher->addListener(GlobalsInitializedEvent::EVENT_HANDLE, 'createFaxModuleGlobals');
 
+$bootstrap = new Bootstrap($eventDispatcher, $GLOBALS['kernel']);
+$bootstrap->subscribeToEvents();
