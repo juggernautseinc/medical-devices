@@ -12,7 +12,7 @@
  */
 
 use OpenEMR\Core\Header;
-use OpenEMR\Modules\Comlink\Container;
+use Comlink\OpenEMR\Module\Container;
 use OpenEMR\Common\Acl\AclMain;
 
 require_once dirname(__FILE__, 4) . "/globals.php";
