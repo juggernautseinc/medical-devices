@@ -16,7 +16,6 @@ use Comlink\OpenEMR\Module\Container;
 use OpenEMR\Common\Acl\AclMain;
 
 require_once dirname(__FILE__, 4) . "/globals.php";
-require_once dirname(__FILE__) . "/controller/Container.php";
 
 if (!AclMain::aclCheckCore('admin', 'manage_modules')) {
     echo xlt('Not Authorized');
