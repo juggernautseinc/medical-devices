@@ -16,6 +16,8 @@
 
 namespace Comlink\OpenEMR\Module;
 
+require_once __DIR__ . "/../vendor/autoload.php";
+
 /**
  * Note the below use statements are importing classes from the OpenEMR core codebase
  */
