@@ -8,7 +8,6 @@
  *
  */
 
-namespace Comlink\OpenEMR\Module;
 
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Menu\MenuEvent;
