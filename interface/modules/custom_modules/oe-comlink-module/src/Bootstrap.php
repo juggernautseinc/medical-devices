@@ -38,7 +38,7 @@ use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
 
 // we import our own classes here.. although this use statement is unnecessary it forces the autoloader to be tested.
-use Comlink\OpenEMR\Module\ComlinkRestController;
+use Comlink\OpenEMR\Module\CustomComlinkRestController;
 
 
 class Bootstrap
