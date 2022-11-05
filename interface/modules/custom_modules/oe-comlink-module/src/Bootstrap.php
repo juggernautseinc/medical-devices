@@ -48,22 +48,22 @@ class Bootstrap
     /**
      * @var EventDispatcherInterface The object responsible for sending and subscribing to events through the OpenEMR system
      */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     /**
      * @var GlobalConfig Holds our module global configuration values that can be used throughout the module.
      */
-    private $globalsConfig;
+    private GlobalConfig $globalsConfig;
 
     /**
      * @var string The folder name of the module.  Set dynamically from searching the filesystem.
      */
-    private $moduleDirectoryName;
+    private string $moduleDirectoryName;
 
     /**
      * @var \Twig\Environment The twig rendering environment
      */
-    private $twig;
+    private \Twig\Environment $twig;
 
     /**
      * @var SystemLogger
