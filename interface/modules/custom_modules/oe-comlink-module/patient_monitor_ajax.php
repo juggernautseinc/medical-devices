@@ -10,7 +10,6 @@
  *
  */
 
-
 use Comlink\OpenEMR\Module\DisplayController;
 
 require_once __DIR__ . "/../../../globals.php";
