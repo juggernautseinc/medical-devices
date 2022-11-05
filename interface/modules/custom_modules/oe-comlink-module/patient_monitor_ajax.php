@@ -40,6 +40,7 @@ while ($row = sqlFetchArray($res)) {
 
     while ($row2 = sqlFetchArray($res2)) {
         $alert = '';
+        $limit = '';
         $device_vitals = "SELECT count(*) FROM patient_devices_list WHERE pid=" . $row['pid'];
         $device_vitalsres = sqlStatement($device_vitals);
         $device_vitalsrow = sqlFetchArray($device_vitalsres);
@@ -87,13 +88,16 @@ while ($row = sqlFetchArray($res)) {
         if (!empty($form_vitalsrow['height'])) {
             $height = round($form_vitalsrow['height'], 2);
         }
+        if (!empty($form_vitalsrow['bps']) && !empty($form_vitalsrow['bpd'])) {
+            $bpfull = $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'];
+        }
 
         $dataArray['data'][$i] =  [
             '<a href=form/edit_patient.php?pid=' . $row['pid'] . '>' . $row2['fname'] . $row2['lname'] . $row2['mname'] . '</a>' . $icons,
             $row2['DOB'] ?? null,
             $row['pid'] ?? null,
             $facilityrow['name'] ?? 1,
-            $form_vitalsrow['bps'] ?? null . '/' . $form_vitalsrow['bpd'] ?? null,
+            $bpfull ?? null,
             $temperature ?? null,
             $row['bs_upper'] ?? null,
             $respiration ?? null,
