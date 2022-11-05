@@ -74,18 +74,19 @@ while ($row = sqlFetchArray($res)) {
         }  elseif  ( $row['alert'] == "Monitored") {
             $alert = '<div class="alert alert-danger" role="alert">' . $row['alert'] . '</div>';
         }
-
+        $temperature = round($form_vitalsrow['temperature'], 2);
+        $respiration = round($form_vitalsrow['respiration'], 2);
         $weight = round($form_vitalsrow['weight'], 2);
         $height = round($form_vitalsrow['height'], 2);
         $dataArray['data'][$i] =  [
             '<a href=form/edit_patient.php?pid=' . $row['pid'] . '>' . $row2['fname'] . $row2['lname'] . $row2['mname'] . '</a>' . $icons,
             $row2['DOB'] ?? null,
             $row['pid'] ?? null,
-            $facilityrow['name'] ?? 0,
+            $facilityrow['name'] ?? 1,
             $form_vitalsrow['bps'] . '/' . $form_vitalsrow['bpd'] ?? null,
-            round($form_vitalsrow['temperature'], 2) ?? null,
+            $temperature ?? null,
             $row['bs_upper'] ?? null,
-            round($form_vitalsrow['respiration'], 2) ?? null,
+            $respiration ?? null,
             '',
             $form_vitalsrow['oxygen_saturation'] ?? null,
             $weight ?? null,
