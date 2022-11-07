@@ -262,7 +262,7 @@ class Bootstrap
         if ($this->getGlobalConfig()->getGlobalSetting(GlobalConfig::CONFIG_ENABLE_FHIR_API)) {
             $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomComlinkApi']);
             $this->eventDispatcher->addListener(RestApiScopeEvent::EVENT_TYPE_GET_SUPPORTED_SCOPES, [$this, 'addApiScope']);
-            $this->eventDispatcher->addListener(RestApiResourceServiceEvent::EVENT_HANDLE, [$this, 'addMetadataConformance']);
+//            $this->eventDispatcher->addListener(RestApiResourceServiceEvent::EVENT_HANDLE, [$this, 'addMetadataConformance']);
         }
     }
 
@@ -273,13 +273,20 @@ class Bootstrap
         /**
          * To see the route definitions @see https://github.com/openemr/openemr/blob/master/_rest_routes.inc.php
          */
-        $event->addToFHIRRouteMap('GET /fhir/CustomComlinkResource', [$apiController, 'listResources']);
-        $event->addToFHIRRouteMap('GET /fhir/CustomComlinkResource/:fhirId', [$apiController, 'getOneResource']);
+        $event->addToFHIRRouteMap('POST /fhir/PatientBulkUpload/', [$this, 'bulkPatientVitalsUploader'] );
 
         /**
          * Events must ALWAYS be returned
          */
         return $event;
+    }
+
+    public function bulkPatientVitalsUploader(HttpRestRequest $request) {
+        RestConfig::authorization_check("patients", "demo");
+        $data = (array) (json_decode(file_get_contents("php://input"), true));
+        $return = (new FhirPatientBulkUploadRestController())->post($data);
+        RestConfig::apiLog($return, $data);
+        return $return;
     }
 
     /**
@@ -292,23 +299,24 @@ class Bootstrap
     {
         if ($event->getApiType() == RestApiScopeEvent::API_TYPE_FHIR) {
             $scopes = $event->getScopes();
-            $scopes[] = 'user/CustomComlinkResource.read';
-            $scopes[] = 'patient/CustomComlinkResource.read';
+            $scopes[] = 'user/PatientBulkUpload.read';
+            $scopes[] = 'user/PatientBulkUpload.write';
             // only add system scopes if they are actually enabled
             if (\RestConfig::areSystemScopesEnabled())
             {
-                $scopes[] = 'system/CustomComlinkResource.read';
+                $scopes[] = 'system/PatientBulkUpload.read';
+                $scopes[] = 'system/PatientBulkUpload.write';
             }
             $event->setScopes($scopes);
         }
         return $event;
     }
-
-    public function addMetadataConformance(RestApiResourceServiceEvent $event)
-    {
-        $event->setServiceClass(CustomComlinkFHIRResourceService::class);
-        return $event;
-    }
+//
+//    public function addMetadataConformance(RestApiResourceServiceEvent $event)
+//    {
+//        $event->setServiceClass(CustomComlinkFHIRResourceService::class);
+//        return $event;
+//    }
 
     private function getPublicPath()
     {

@@ -125,4 +125,9 @@ class CustomComlinkRestController
         $processingResult = $this->customComlinkResourceService->getOne($fhirId, $puuidBind);
         return RestControllerHelper::handleFhirProcessingResult($processingResult, 200);
     }
+
+    public function bulkPatientVitalsUpload()
+    {
+
+    }
 }
