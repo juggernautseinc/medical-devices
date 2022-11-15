@@ -21,6 +21,9 @@ require_once __DIR__ . "/../vendor/autoload.php";
 /**
  * Note the below use statements are importing classes from the OpenEMR core codebase
  */
+
+use Comlink\OpenEMR\Module\FHIR\FhirPatientBulkUploadRestController;
+use OpenEMR\Common\Http\HttpRestRequest;
 use OpenEMR\Common\Logging\SystemLogger;
 use OpenEMR\Common\Twig\TwigContainer;
 use OpenEMR\Core\Kernel;
@@ -38,7 +41,7 @@ use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
 
 // we import our own classes here.. although this use statement is unnecessary it forces the autoloader to be tested.
-use Comlink\OpenEMR\Module\CustomComlinkRestController;
+//use Comlink\OpenEMR\Module\CustomComlinkRestController;
 
 
 class Bootstrap
@@ -95,14 +98,14 @@ class Bootstrap
 
     public function subscribeToEvents()
     {
-        $this->addGlobalSettings();
+//        $this->addGlobalSettings();
 
         // we only add the rest of our event listeners and configuration if we have been fully setup and configured
-        if ($this->globalsConfig->isConfigured()) {
-            $this->registerMenuItems();
-            $this->registerTemplateEvents();
-            $this->subscribeToApiEvents();
-        }
+//        if ($this->globalsConfig->isConfigured()) {
+//            $this->registerMenuItems();
+//            $this->registerTemplateEvents();
+        $this->subscribeToApiEvents();
+//        }
     }
 
     /**
@@ -259,21 +262,21 @@ class Bootstrap
 
     public function subscribeToApiEvents()
     {
-        if ($this->getGlobalConfig()->getGlobalSetting(GlobalConfig::CONFIG_ENABLE_FHIR_API)) {
-            $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomComlinkApi']);
-            $this->eventDispatcher->addListener(RestApiScopeEvent::EVENT_TYPE_GET_SUPPORTED_SCOPES, [$this, 'addApiScope']);
-//            $this->eventDispatcher->addListener(RestApiResourceServiceEvent::EVENT_HANDLE, [$this, 'addMetadataConformance']);
-        }
+//        if ($this->getGlobalConfig()->getGlobalSetting(GlobalConfig::CONFIG_ENABLE_FHIR_API)) {
+        $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomComlinkApi']);
+        $this->eventDispatcher->addListener(RestApiScopeEvent::EVENT_TYPE_GET_SUPPORTED_SCOPES, [$this, 'addApiScope']);
+//            $this->eventDispatcher->addListener(
+//::EVENT_HANDLE, [$this, 'addMetadataConformance']);
+//        }
     }
+
 
     public function addCustomComlinkApi(RestApiCreateEvent $event)
     {
-        $apiController = new CustomComlinkRestController();
-
         /**
          * To see the route definitions @see https://github.com/openemr/openemr/blob/master/_rest_routes.inc.php
          */
-        $event->addToFHIRRouteMap('POST /fhir/PatientBulkUpload/', [$this, 'bulkPatientVitalsUploader'] );
+        $event->addToFHIRRouteMap('POST /fhir/PatientBulkUpload', [$this, 'bulkPatientVitalsUploader'] );
 
         /**
          * Events must ALWAYS be returned
@@ -282,10 +285,16 @@ class Bootstrap
     }
 
     public function bulkPatientVitalsUploader(HttpRestRequest $request) {
-        RestConfig::authorization_check("patients", "demo");
+
+        \RestConfig::authorization_check("patients", "demo");
         $data = (array) (json_decode(file_get_contents("php://input"), true));
         $return = (new FhirPatientBulkUploadRestController())->post($data);
-        RestConfig::apiLog($return, $data);
+        $restConfig = $request->getRestConfig();
+        $class = get_class($restConfig);
+        // this goes around having to have a hard path dependency on the apiLog function
+        if (method_exists($class, 'apiLog')) {
+            $class::apiLog($return, $data);
+        }
         return $return;
     }
 

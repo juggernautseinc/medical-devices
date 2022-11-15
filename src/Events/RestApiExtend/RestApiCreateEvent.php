@@ -69,6 +69,7 @@ class RestApiCreateEvent extends Event
      */
     public function addToFHIRRouteMap($route, $action)
     {
+        file_put_contents('/var/www/html/boss/sites/default/documents/temp/route.txt', $route . $action);
         $this->fhir_route_map[$route] = $action;
     }
 
