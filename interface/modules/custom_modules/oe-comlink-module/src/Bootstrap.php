@@ -22,7 +22,6 @@ require_once __DIR__ . "/../vendor/autoload.php";
  * Note the below use statements are importing classes from the OpenEMR core codebase
  */
 
-use Comlink\OpenEMR\Module\FHIR\FhirPatientBulkUploadRestController;
 use OpenEMR\Common\Http\HttpRestRequest;
 use OpenEMR\Common\Logging\SystemLogger;
 use OpenEMR\Common\Twig\TwigContainer;
@@ -30,7 +29,6 @@ use OpenEMR\Core\Kernel;
 use OpenEMR\Events\Core\TwigEnvironmentEvent;
 use OpenEMR\Events\Globals\GlobalsInitializedEvent;
 use OpenEMR\Events\Main\Tabs\RenderEvent;
-use OpenEMR\Events\RestApiExtend\RestApiResourceServiceEvent;
 use OpenEMR\Events\RestApiExtend\RestApiScopeEvent;
 use OpenEMR\Services\Globals\GlobalSetting;
 use OpenEMR\Menu\MenuEvent;
@@ -39,10 +37,6 @@ use OpenEMR\Events\RestApiExtend\RestApiCreateEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
-
-// we import our own classes here.. although this use statement is unnecessary it forces the autoloader to be tested.
-//use Comlink\OpenEMR\Module\CustomComlinkRestController;
-
 
 class Bootstrap
 {
@@ -98,14 +92,8 @@ class Bootstrap
 
     public function subscribeToEvents()
     {
-//        $this->addGlobalSettings();
-
-        // we only add the rest of our event listeners and configuration if we have been fully setup and configured
-//        if ($this->globalsConfig->isConfigured()) {
-//            $this->registerMenuItems();
-//            $this->registerTemplateEvents();
+        $this->addGlobalSettings();
         $this->subscribeToApiEvents();
-//        }
     }
 
     /**
@@ -262,12 +250,8 @@ class Bootstrap
 
     public function subscribeToApiEvents()
     {
-//        if ($this->getGlobalConfig()->getGlobalSetting(GlobalConfig::CONFIG_ENABLE_FHIR_API)) {
         $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomComlinkApi']);
         $this->eventDispatcher->addListener(RestApiScopeEvent::EVENT_TYPE_GET_SUPPORTED_SCOPES, [$this, 'addApiScope']);
-//            $this->eventDispatcher->addListener(
-//::EVENT_HANDLE, [$this, 'addMetadataConformance']);
-//        }
     }
 
 
@@ -286,16 +270,32 @@ class Bootstrap
 
     public function bulkPatientVitalsUploader(HttpRestRequest $request) {
 
-        \RestConfig::authorization_check("patients", "demo");
-        $data = (array) (json_decode(file_get_contents("php://input"), true));
-        $return = (new FhirPatientBulkUploadRestController())->post($data);
         $restConfig = $request->getRestConfig();
         $class = get_class($restConfig);
+
+        if (method_exists($class, 'authorization_check')) {
+            $class::authorization_check("patients", "demo");
+        } else {
+            http_response_code(500);
+            echo json_encode(array("error" => "Server error occured"));
+            (new SystemLogger())->error("restConfig did not have authorization_check method");
+            return;
+        }
+
+        $data = (array) (json_decode(file_get_contents("php://input"), true));
+
+        // there is no FHIR format here at all, so might as well just insert the data directly and skip
+        // all of the FHIR processing pieces until this is converted to an FHIR operation
+        // or is converted to actually post FHIR observation or FHIR patient w/ extensions
+        $patientBulkVitalsService = new PatientBulkVitalsService();
+        $result = $patientBulkVitalsService->insertbulkpatient($data);
+
         // this goes around having to have a hard path dependency on the apiLog function
         if (method_exists($class, 'apiLog')) {
-            $class::apiLog($return, $data);
+            $class::apiLog(json_encode($result), $data);
         }
-        return $return;
+        http_response_code(200);
+        return $result;
     }
 
     /**
@@ -320,12 +320,6 @@ class Bootstrap
         }
         return $event;
     }
-//
-//    public function addMetadataConformance(RestApiResourceServiceEvent $event)
-//    {
-//        $event->setServiceClass(CustomComlinkFHIRResourceService::class);
-//        return $event;
-//    }
 
     private function getPublicPath()
     {
