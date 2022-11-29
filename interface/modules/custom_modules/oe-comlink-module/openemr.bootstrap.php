@@ -60,6 +60,7 @@ function createFaxModuleGlobals(GlobalsInitializedEvent $event)
     $instructuname = xl('Enter username from comlink account.');
     $instructupass = xl('Enter password from comlink account.');
     $instructorgid = xl('Enter organizaion identification.');
+    $instructuri   = xl('Enter URL setting from comlink account');
     $event->getGlobalsService()->createSection("Comlink Device Module", "Billing");
     $setting = new GlobalSetting(xl('Comlink Username'), 'text', '', $instructuname);
     $event->getGlobalsService()->appendToSection("Comlink Device Module", "comlink_username", $setting);
@@ -67,6 +68,8 @@ function createFaxModuleGlobals(GlobalsInitializedEvent $event)
     $event->getGlobalsService()->appendToSection("Comlink Device Module", "comlink_password", $setting);
     $setting = new GlobalSetting(xl('Comlink Org ID'), 'text', '', $instructorgid);
     $event->getGlobalsService()->appendToSection("Comlink Device Module", "comlink_xorgid", $setting);
+    $setting = new GlobalSetting(xl('Comlink URL'), 'text', '', $instructuri);
+    $event->getGlobalsService()->appendToSection("Comlink Device Module", "comlink_device_uri", $setting);
 }
 
 $eventDispatcher->addListener(GlobalsInitializedEvent::EVENT_HANDLE, 'createFaxModuleGlobals');
