@@ -74,3 +74,38 @@ ALTER TABLE `patient_monitoring_form`
 ALTER TABLE `patient_monitoring_list`
     MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key';
 COMMIT;
+
+--
+-- Table structure for table `devices_list`
+--
+
+CREATE TABLE `devices_list` (
+    `id` int NOT NULL,
+    `subehremrid` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `deviceid` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `devicemodal` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `devicemaker` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `deviceos` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `pid` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `devices_list`
+--
+ALTER TABLE `devices_list`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `devices_list`
+--
+ALTER TABLE `devices_list`
+    MODIFY `id` int NOT NULL AUTO_INCREMENT;
+COMMIT;
