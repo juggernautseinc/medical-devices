@@ -91,4 +91,4 @@ function renderButtonPostLoad(Event $event) {
 
 $eventDispatcher->addListener(MenuEvent::MENU_UPDATE, 'oe_module_priorauth_add_menu_item');
 $eventDispatcher->addListener(PatientMenuEvent::MENU_UPDATE, 'oe_module_priorauth_patient_menu_item');
-$eventDispatcher->addListener(RenderEvent::EVENT_RENDER_JAVA, 'renderButtonPostLoad');
+//$eventDispatcher->addListener(RenderEvent::EVENT_RENDER_JAVA, 'renderButtonPostLoad');
