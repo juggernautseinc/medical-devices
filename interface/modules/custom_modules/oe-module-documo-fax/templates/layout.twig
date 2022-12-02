@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{ setupHeader() }}
+    <title>{{ pageTitle }}</title>
+    {% block header %}
+    {% endblock %}
+</head>
+<body>
+<div id="body" class="container">
+    {%  block body %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+    <div class="mt-10">
+        &copy; {{ 'now'|date('Y') }} {{ 'Juggernaut Systems Express'|xlt  }}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends "layout.twig"  %}
+
+    {% block body %}
+        <h1 class="mt-5">{{ pageTitle|xlt }}</h1>
+        <div class="mt-15 mb-15">
+            {{ "Network Status"|xlt }}:
+            {% if status == true  %}<button style="background-color: darkgreen; color: whitesmoke;"> {{ "Systems Online"|xlt }} </button>
+            {% else %} <button style="background-color: red; color: aliceblue;">{{ "System Offline"|xlt }}</button>
+            {% endif %}
+        </div>
+        <div class="mt-15 mb-10">
+            <table class="table">
+                <tr>
+                    <td><span style="font-weight: bold">{{ "Account Unique Identifier"|xlt }}:</span></td><td>{{ uuid }}</td>
+                </tr>
+                <tr>
+                    <td><span style="font-weight: bold">{{ "Account Name"|xlt }}:</span></td><td>{{ accountname }}</td>
+                </tr>
+                <tr>
+                    <td><span style="font-weight: bold">{{ "Acct Office Number"|xlt }}:</span></td><td>{{ callerid }}</td>
+                </tr>
+                <tr>
+                    <td><span style="font-weight: bold">{{ "Fax Numbers"|xlt }}:</span></td><td></td>
+                </tr>
+                {% for key, number in numbers %}
+                    <tr>
+                        <td></td><td>{{ number.numberE164 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+    <div class="mt-10" id="footer">
+        <a href="https://affordablecustomehr.documo.com/signin" target="_blank">Get API key</a><br><br>
+        <a class="btn btn-primary" href="../provision/provisioning.php">{{ "Add/Remove Numbers"|xlt }}</a><br><br>
+    </div>
+    <div class="m-4">
+        <h4>Subscriptions</h4>
+        <a class="btn btn-primary m-4" href="https://link.waveapps.com/x8fmb7-4puhev" target="_blank">150 Inbound/Outbound Faxes per Month</a>
+        <a class="btn btn-primary" href="https://link.waveapps.com/cdfctu-q5rmmy" target="_blank">300 Inbound/Outbound Faxes per Month</a>
+    </div>
+    {% endblock footer %}
+
