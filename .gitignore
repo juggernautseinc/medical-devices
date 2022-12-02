@@ -11,7 +11,7 @@ node_modules
 /public/themes/*
 !/public/assets/modified
 /.docs/.out/*
-
+/sites/default/sqlconf.php
 # Custom modules
 
 
