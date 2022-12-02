@@ -1808,5 +1808,5 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
             });
         </script>
 </body>
-
+<?php $ed->dispatch(new RenderEvent($pid), RenderEvent::EVENT_RENDER_POST_PAGELOAD, 10); ?>
 </html>

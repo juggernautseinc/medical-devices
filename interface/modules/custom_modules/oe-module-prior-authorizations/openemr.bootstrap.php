@@ -55,30 +55,31 @@ function oe_module_priorauth_patient_menu_item(PatientMenuEvent $menuEvent)
 
 function renderButtonPostLoad(Event $event) {
     ?>
-    document
-            .getElementById('addButton')
-            .addEventListener("click", function (e){
-                if( ! confirm('Do you really want to do this?')){
-                     e.preventDefault();
-                } else {
-                alert('Ok, lets do this! Click ok to really mark inactive.');
-                let libUrl = 'patient_status.php';
-                let pid = <?php echo $_SESSION['pid']; ?>;
-                let csrf = <?php echo xlj(CsrfUtils::collectCsrfToken()); ?>;
-            $.ajax({
-                type: "POST",
-                url: libUrl,
-                data: {patientid: pid, csrf_token: csrf},
-                error: function (qXHR) {
-                console.log("There was an error");
-                alert(<?php echo xlj("File Error") ?> +"\n" + id)
-            },
-            success: function (result) {
-                alert(result);
+    <script>
+        document.getElementById('addButton')
+                .addEventListener("click", function (e){
+                    if( ! confirm('Do you really want to do this?')){
+                         e.preventDefault();
+                    } else {
+                        alert('Ok, lets do this! Click ok to really mark inactive.');
+                        let libUrl = 'patient_status.php';
+                        let pid = <?php echo $_SESSION['pid']; ?>;
+                        let csrf = <?php echo xlj(CsrfUtils::collectCsrfToken()); ?>;
+                    $.ajax({
+                        type: "POST",
+                        url: libUrl,
+                        data: {patientid: pid, csrf_token: csrf},
+                        error: function (qXHR) {
+                        console.log("There was an error");
+                        alert(<?php echo xlj("File Error") ?> +"\n" + id)
+                    },
+                    success: function (result) {
+                        alert(result);
+                    }
+                });
             }
         });
-        }
-    });
+    </script>
 <?php
 }
 
@@ -91,4 +92,4 @@ function renderButtonPostLoad(Event $event) {
 
 $eventDispatcher->addListener(MenuEvent::MENU_UPDATE, 'oe_module_priorauth_add_menu_item');
 $eventDispatcher->addListener(PatientMenuEvent::MENU_UPDATE, 'oe_module_priorauth_patient_menu_item');
-//$eventDispatcher->addListener(RenderEvent::EVENT_RENDER_JAVA, 'renderButtonPostLoad');
+$eventDispatcher->addListener(RenderEvent::EVENT_RENDER_POST_PAGELOAD, 'renderButtonPostLoad');
