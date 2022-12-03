@@ -879,7 +879,10 @@ function getPatientSSN($ss = "%", $given = "pid, id, lname, fname, mname, provid
     _set_patient_inc_count($limit, count($returnval), $where, $sqlBindArray);
     return $returnval;
 }
-
+function getPatientPhoneNumber($pid) {
+    $number = sqlQuery("SELECT phone_cell, phone_home FROM patient_data WHERE pid = ?", [$pid]);
+    return $number;
+}
 //(CHEMED) Search by phone number
 // To prevent sql injection on this function, if a variable is used for $given OR $orderby parameter, then
 // it needs to be escaped via whitelisting prior to using this function.
