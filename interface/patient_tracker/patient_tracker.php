@@ -186,7 +186,7 @@ if (!$_REQUEST['flb_table']) {
         $MedEx->display->navigation($logged_in);
     }
     ?>
-    <div class="container mt-5" style="max-width: 1440px !important;>
+    <div class="container mt-5" style="max-width: 1440px !important;">
         <div id="flb_selectors" style="display:<?php echo attr($setting_selectors); ?>;">
             <h2 class="text-center"><?php echo xlt('Flow Board'); ?></h2>
             <div class="jumbotron p-4">
@@ -662,7 +662,22 @@ if (!$_REQUEST['flb_table']) {
                                 <?php echo text($ptname_short); ?></a>
                         </td>
                         <td class="detail text-center">
-                            Dot here
+                            <?php
+                                echo '$' . $balance = get_patient_balance($appt_pid) . "<br>";
+                                $checkDate = sqlQuery(
+                                        "SELECT `end_date` FROM `module_prior_authorizations` WHERE pid = ? " .
+                                        " ORDER BY end_date DESC ",
+                                        [$appt_pid]
+                                        );
+                                if (!empty($checkDate['end_date'])) {
+                                    if ($checkDate['end_date'] < date('Y-m-d')) {
+                                        echo "<span class='dot'></span>";
+                                    } else {
+                                        echo "<span class='good'></span>";
+                                    }
+                                }
+
+                            ?>
                         </td>
                         <!-- reason -->
                         <?php if ($GLOBALS['ptkr_visit_reason']) { ?>
