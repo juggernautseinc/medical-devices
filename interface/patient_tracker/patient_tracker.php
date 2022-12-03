@@ -161,6 +161,22 @@ if (!$_REQUEST['flb_table']) {
     <?php } ?>
 
     <script src="<?php echo $GLOBALS['web_root']; ?>/interface/main/messages/js/reminder_appts.js?v=<?php echo $v_js_includes; ?>"></script>
+    <style>
+        .dot {
+          height: 25px;
+          width: 25px;
+          background-color: red;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .good {
+            height: 25px;
+          width: 25px;
+          background-color: green;
+          border-radius: 50%;
+          display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -383,6 +399,9 @@ if (!$_REQUEST['flb_table']) {
                                 <?php echo xlt('PID'); ?>
                             </td>
                         <?php } ?>
+                        <td>
+                            <?php echo xlt('Auth'); ?>
+                        </td>
                         <td class="dehead text-center text-ovr-dark" style="max-width: 150px;">
                             <?php echo xlt('Patient'); ?>
                         </td>
@@ -457,7 +476,7 @@ if (!$_REQUEST['flb_table']) {
                         } ?>
                     </tr>
                     </thead>
-                    <tbody>
+                    <td>
                     <?php
                     $prev_appt_date_time = "";
                     foreach ($appointments as $appointment) {
@@ -640,7 +659,9 @@ if (!$_REQUEST['flb_table']) {
                             <a href="#" onclick="return topatient(<?php echo attr_js($appt_pid); ?>,<?php echo attr_js($appt_enc); ?>)">
                                 <?php echo text($ptname_short); ?></a>
                         </td>
-
+                        <td class="detail text-center">
+                            Dot here
+                        </td>
                         <!-- reason -->
                         <?php if ($GLOBALS['ptkr_visit_reason']) { ?>
                             <td class="detail text-center" name="kiosk_hide">
