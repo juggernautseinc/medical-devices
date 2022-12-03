@@ -161,22 +161,6 @@ if (!$_REQUEST['flb_table']) {
     <?php } ?>
 
     <script src="<?php echo $GLOBALS['web_root']; ?>/interface/main/messages/js/reminder_appts.js?v=<?php echo $v_js_includes; ?>"></script>
-    <style>
-        .dot {
-          height: 25px;
-          width: 25px;
-          background-color: red;
-          border-radius: 50%;
-          display: inline-block;
-        }
-        .good {
-            height: 25px;
-          width: 25px;
-          background-color: green;
-          border-radius: 50%;
-          display: inline-block;
-        }
-</style>
 </head>
 
 <body>
@@ -399,9 +383,6 @@ if (!$_REQUEST['flb_table']) {
                                 <?php echo xlt('PID'); ?>
                             </td>
                         <?php } ?>
-                            <td>
-                                <?php echo xlt('Auth'); ?>
-                            </td>
                         <td class="dehead text-center text-ovr-dark" style="max-width: 150px;">
                             <?php echo xlt('Patient'); ?>
                         </td>
@@ -412,12 +393,10 @@ if (!$_REQUEST['flb_table']) {
                         <?php } ?>
                         <?php if ($GLOBALS['ptkr_show_encounter']) { ?>
                             <td class="dehead text-center text-ovr-dark" name="kiosk_hide">
-                                <?php echo xlt('Copay'); ?>
+                                <?php echo xlt('Encounter'); ?>
                             </td>
                         <?php } ?>
-                        <td>
-                            <?php echo xlt('Phone') ?>
-                        </td>
+
                         <?php if ($GLOBALS['ptkr_date_range'] == '1') { ?>
                             <td class="dehead text-center text-ovr-dark" name="kiosk_hide">
                                 <?php echo xlt('Appt Date'); ?>
@@ -648,25 +627,10 @@ if (!$_REQUEST['flb_table']) {
                             <td class="detail text-center" name="kiosk_hide">
                                 <?php echo text($appt_pid); ?>
                             </td>
-                            <?php } ?>
-                        <td class="detail text-center">
                             <?php
-                                echo '$' . $balance = get_patient_balance($appt_pid) . "<br>";
-                                $checkDate = sqlQuery(
-                                        "SELECT `end_date` FROM `module_prior_authorizations` WHERE pid = ? " .
-                                        " ORDER BY end_date DESC ",
-                                        [$appt_pid]
-                                        );
-                                if (!empty($checkDate['end_date'])) {
-                                    if ($checkDate['end_date'] < date('Y-m-d')) {
-                                        echo "<span class='dot'></span>";
-                                    } else {
-                                        echo "<span class='good'></span>";
-                                    }
-                                }
+                        }
 
-                            ?>
-                        </td>
+                        ?>
                         <td class="detail text-center" name="kiosk_hide">
                             <a href="#" onclick="return topatient(<?php echo attr_js($appt_pid); ?>,<?php echo attr_js($appt_enc); ?>)">
                                 <?php echo text($ptname); ?></a>
@@ -686,22 +650,12 @@ if (!$_REQUEST['flb_table']) {
                         <?php if ($GLOBALS['ptkr_show_encounter']) { ?>
                             <td class="detail text-center" name="kiosk_hide">
                                 <?php
-                                     $copay = getPatientCopay($appointment['pc_pid']);
-                                     if ($copay != 0 && is_int($copay)) {
-                                         echo '$'.$copay;
-                                     } elseif ($copay) {
-                                         echo $copay;
-                                     }
-
+                                if ($appt_enc != 0) {
+                                    echo text($appt_enc);
+                                }
                                 ?>
                             </td>
                         <?php } ?>
-                        <td>
-                            <?php
-                                $number = getPatientPhoneNumber($appointment['pc_pid']);
-                                echo $number['phone_cell'] . "<br> " . $number['phone_home'];
-                            ?>
-                        </td>
                         <?php if ($GLOBALS['ptkr_date_range'] == '1') { ?>
                             <td class="detail text-center" name="kiosk_hide">
                                 <?php echo text(oeFormatShortDate($appointment['pc_eventDate']));
