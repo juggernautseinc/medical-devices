@@ -34,7 +34,6 @@ try {
 }
 
 $twig = $twigloader->getTwig();
-$twig->addExtension(new Twig_Extension_Debug());
 
 if (!$_POST['number'] && !$_GET['inbound']) {
     $userinfo = new Database();
