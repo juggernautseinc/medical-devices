@@ -186,7 +186,7 @@ if (!$_REQUEST['flb_table']) {
         $MedEx->display->navigation($logged_in);
     }
     ?>
-    <div class="container mt-5" style="max-width: 1440px !important;">
+    <div class="container mt-5" style="max-width: 1440px" !important;>
         <div id="flb_selectors" style="display:<?php echo attr($setting_selectors); ?>;">
             <h2 class="text-center"><?php echo xlt('Flow Board'); ?></h2>
             <div class="jumbotron p-4">
