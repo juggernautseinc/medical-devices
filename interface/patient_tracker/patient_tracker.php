@@ -415,7 +415,9 @@ if (!$_REQUEST['flb_table']) {
                                 <?php echo xlt('Encounter'); ?>
                             </td>
                         <?php } ?>
-
+                        <td>
+                            <?php echo xlt('Phone') ?>
+                        </td>
                         <?php if ($GLOBALS['ptkr_date_range'] == '1') { ?>
                             <td class="dehead text-center text-ovr-dark" name="kiosk_hide">
                                 <?php echo xlt('Appt Date'); ?>
@@ -677,6 +679,12 @@ if (!$_REQUEST['flb_table']) {
                                 ?>
                             </td>
                         <?php } ?>
+                        <td>
+                            <?php
+                                $number = getPatientPhoneNumber($appointment['pc_pid']);
+                                echo $number['phone_cell'] . "<br> " . $number['phone_home'];
+                            ?>
+                        </td>
                         <?php if ($GLOBALS['ptkr_date_range'] == '1') { ?>
                             <td class="detail text-center" name="kiosk_hide">
                                 <?php echo text(oeFormatShortDate($appointment['pc_eventDate']));
