@@ -12,6 +12,7 @@
  */
 
 
+use OpenEMR\Common\Acl\AclMain;
 use OpenEMR\Menu\MenuEvent;
 use OpenEMR\Menu\PatientMenuEvent;
 use OpenEMR\Events\PatientDemographics\RenderEvent;
@@ -54,33 +55,50 @@ function oe_module_priorauth_patient_menu_item(PatientMenuEvent $menuEvent)
 }
 
 function renderButtonPostLoad(Event $event) {
+
+    $patient_status = sqlQuery("SELECT `status` FROM `patient_status` WHERE `pid` = ? ORDER BY `statusId` DESC LIMIT 1", [$_SESSION['pid']]);
+    if (($patient_status['status'] != 'inactive') && (AclMain::aclCheckCore('admin', 'super'))) {
     ?>
     <script>
-        document.getElementById('addButton')
+        document.getElementById('custompatientnav').innerHTML = '<button class="btn btn-danger" id="addButton">Mark Inactive</button>';
+    </script>
+    <?php
+    } else {
+    ?>
+    <script>
+        document.getElementById('custompatientnav').innerHTML = '<button class="btn btn-success" id="addButton">Mark Active</button>';
+    </script>
+    <?php
+    }
+    ?>
+    <script>
+        document
+                .getElementById('addButton')
                 .addEventListener("click", function (e){
                     if( ! confirm('Do you really want to do this?')){
                          e.preventDefault();
                     } else {
-                        alert('Ok, lets do this! Click ok to really mark inactive.');
-                        let libUrl = 'patient_status.php';
-                        let pid = <?php echo $_SESSION['pid']; ?>;
-                        let csrf = <?php echo xlj(CsrfUtils::collectCsrfToken()); ?>;
-                    $.ajax({
-                        type: "POST",
-                        url: libUrl,
-                        data: {patientid: pid, csrf_token: csrf},
-                        error: function (qXHR) {
-                        console.log("There was an error");
-                        alert(<?php echo xlj("File Error") ?> +"\n" + id)
-                    },
-                    success: function (result) {
-                        alert(result);
-                    }
-                });
+                    alert('Ok, lets do this! Click ok to really mark inactive.');
+                    let libUrl = 'patient_status.php';
+                    let pid = <?php echo $_SESSION['pid']; ?>;
+                    let csrf = <?php echo xlj(CsrfUtils::collectCsrfToken()); ?>;
+                $.ajax({
+                    type: "POST",
+                    url: libUrl,
+                    data: {patientid: pid, csrf_token: csrf},
+                    error: function (qXHR) {
+                    console.log("There was an error");
+                    alert(<?php echo xlj("File Error") ?> +"\n" + id)
+                },
+                success: function (result) {
+                    alert(result);
+                }
+            });
             }
         });
-    </script>
+    </script
 <?php
+
 }
 
 /**
