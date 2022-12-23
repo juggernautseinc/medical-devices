@@ -338,7 +338,7 @@ class TeleconferenceRoomController
         $userId = $user['id'];
         $auditTrail = $user['fname'] . ' ' . $user['lname'] . '(' . $user['username'] . ')';
 
-        $sql = "UPDATE openemr_postcalendar_events SET pc_aid =? WHERE pc_eid =? ";
+        $sql = "UPDATE openemr_postcalendar_events SET pc_aid = ? WHERE pc_eid = ? ";
         QueryUtils::sqlStatementThrowException($sql, [$userId, $appt['pc_eid']]);
 
         if (!AclMain::aclCheckCore('patients', 'appt', '', array('write','wsome'))) {
